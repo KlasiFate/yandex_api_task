@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -6,7 +7,7 @@ SECRET_KEY = 'django-insecure-gsn6@^s4tk^75^=hou+wag=xdl9f#isiekud1j5%#59ti3_tv+
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -50,12 +51,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'y_api.wsgi.application'
 
 DATABASES = {
-    'default': {
+    'default':{
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'y_api',
-        'USER': 'postgres',
-        'PASSWORD': 'rfjknmui',
-        'HOST': 'localhost',
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'db',
         'PORT': 5432,
     }
 }
